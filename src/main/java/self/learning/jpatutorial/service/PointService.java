@@ -8,13 +8,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import com.mchange.v2.c3p0.*;
+
+import java.beans.PropertyVetoException;
+import java.sql.SQLException;
 
 @Service
 public class PointService {
 
     @PostConstruct
-    public void initialized(){
+    public void initialized() throws PropertyVetoException, SQLException {
         System.out.println("Service initialized");
+
+        ComboPooledDataSource cpds = new ComboPooledDataSource();
+        cpds.setDriverClass( "com.mysql.cj.jdbc.Driver" ); //loads the jdbc driver
+        cpds.setJdbcUrl( "jdbc:mysql://localhost:3306/hibernate_db" );
+        cpds.setUser("root");
     }
 
     public int addPoint(Point point) {
