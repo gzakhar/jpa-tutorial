@@ -1,1 +1,2 @@
-JPA enabled Spring application
+1. JPA enabled Spring application
+
