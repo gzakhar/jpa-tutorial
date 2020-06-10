@@ -1,0 +1,1 @@
+JPA enabled Spring application
